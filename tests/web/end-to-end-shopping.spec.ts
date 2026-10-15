@@ -21,7 +21,7 @@ import { test, expect } from '../../fixtures/pageFixtures';
 import { RandomDataUtil } from '../../utils/dataGenerator';
 import { Helper } from '../../utils/helper';
 
-test('End-to-End Shopping Flow @master @e2e @web', async ({ homePage, registerPage, successPage, myAccountPage, logoutPage, loginPage, searchResultsPage, productPage, cartPage }) => {
+test('End-to-End Shopping Flow @master @e2e @web', async ({ homePage, registerPage, successPage, myAccountPage, logoutPage, loginPage, searchResultsPage, productPage, cartPage }: { homePage: any; registerPage: any; successPage: any; myAccountPage: any; logoutPage: any; loginPage: any; searchResultsPage: any; productPage: any; cartPage: any; }) => {
     const firstName = RandomDataUtil.getFirstName();
     const lastName = RandomDataUtil.getLastName();
     const email = RandomDataUtil.getEmail();

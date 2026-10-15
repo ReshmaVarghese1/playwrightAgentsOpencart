@@ -126,10 +126,28 @@ test.describe('Users API Tests', () => {
 
     test('PUT - Update User @master @regression @api', async ({ request }) => {
 
-        const payload = RandomDataUtil.generateUserUpdatePayload();
+        const getResponse = await request.get(
+            `${BASE_URL}/users/${USER_ID}`
+        );
 
-        const response = await request.put(`${BASE_URL}${Routes.UPDATE_USER.replace('{id}', String(USER_ID))}`, { data: payload });
+        expect(getResponse.status()).toBe(200);
 
+        // Step 2: Store the existing user information
+        const existingUser = await getResponse.json();
+
+        // Step 3: Update only the username
+        const payload = {
+            ...existingUser,
+            username: `updated-${existingUser.username}`
+        };
+
+        // Step 4: Send PUT request
+        const response = await request.put(
+            `${BASE_URL}${Routes.UPDATE_USER.replace('{id}', String(USER_ID))}`,
+            { data: payload }
+        );
+
+        // Step 5: Validate the response
         expect(response.status()).toBe(200);
 
         const responseBody = await response.json();
